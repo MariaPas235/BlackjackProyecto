@@ -1,17 +1,20 @@
 package Model;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Player {
     private String namePlayer;
+    private Card[] deckplayer;
+    private int sumaPuntos;
 
-    private double money;
-
-    public Player(String namePlayer, double money) {
+    public Player(String namePlayer, Card[] deckplayer, int sumaPuntos) {
         this.namePlayer = namePlayer;
-        this.money = money;
+        this.deckplayer = deckplayer;
+        this.sumaPuntos = sumaPuntos;
     }
-
     public Player(){
-        this(" ",0);
+        this("",null,0);
     }
 
     public String getNamePlayer() {
@@ -22,19 +25,36 @@ public class Player {
         this.namePlayer = namePlayer;
     }
 
-    public double getMoney() {
-        return money;
+    public Card[] getDeckplayer() {
+        return deckplayer;
     }
 
-    public void setMoney(double money) {
-        this.money = money;
+    public void setDeckplayer(Card[] deckplayer) {
+        this.deckplayer = deckplayer;
+    }
+
+    public int getSumaPuntos() {
+        return sumaPuntos;
+    }
+
+    public void setSumaPuntos(int sumaPuntos) {
+        this.sumaPuntos = sumaPuntos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return sumaPuntos == player.sumaPuntos && Objects.equals(namePlayer, player.namePlayer) && Arrays.equals(deckplayer, player.deckplayer);
     }
 
     @Override
     public String toString() {
         return "Player{" +
                 "namePlayer='" + namePlayer + '\'' +
-                ", money=" + money +
+                ", deckplayer=" + Arrays.toString(deckplayer) +
+                ", sumaPuntos=" + sumaPuntos +
                 '}';
     }
 }
