@@ -4,8 +4,15 @@ public class Deck {
     private Card[] cards = new Card[52];
     private String[] suits = {"corazones", "rombos", "treboles", "picas"};
 
+    public Card[] getcards(){
+
+        return cards;
+    }
+
+
     public static void main(String[] args) {
     }
+
     public Card[] rellenamazo() {
         int aux = 0;
         for (int i = 0; i < suits.length; i++) {

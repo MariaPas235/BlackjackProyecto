@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Player {
+
     private String namePlayer;
     private Card[] deckplayer;
     private int sumaPuntos;
