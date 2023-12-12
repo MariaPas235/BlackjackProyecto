@@ -9,13 +9,19 @@ public class Player {
     private Card[] deckplayer;
     private int sumaPuntos;
 
-    public Player(String namePlayer, Card[] deckplayer, int sumaPuntos) {
+    private double dineroHucha;
+
+    private double dineroApostado;
+
+    public Player(String namePlayer, Card[] deckplayer, int sumaPuntos, double dineroHucha, double dineroApostado) {
         this.namePlayer = namePlayer;
         this.deckplayer = deckplayer;
         this.sumaPuntos = sumaPuntos;
+        this.dineroHucha = dineroHucha;
+        this.dineroApostado=dineroApostado;
     }
     public Player(){
-        this("",null,0);
+        this("",null,0,50,0);
     }
 
     public String getNamePlayer() {
@@ -42,12 +48,21 @@ public class Player {
         this.sumaPuntos = sumaPuntos;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Player player = (Player) o;
-        return sumaPuntos == player.sumaPuntos && Objects.equals(namePlayer, player.namePlayer) && Arrays.equals(deckplayer, player.deckplayer);
+
+    public double getDineroHucha() {
+        return dineroHucha;
+    }
+
+    public void setDineroHucha(double dineroHucha) {
+        this.dineroHucha = dineroHucha;
+    }
+
+    public double getDineroApostado() {
+        return dineroApostado;
+    }
+
+    public void setDineroApostado(double dineroApostado) {
+        this.dineroApostado = dineroApostado;
     }
 
     @Override
@@ -56,6 +71,19 @@ public class Player {
                 "namePlayer='" + namePlayer + '\'' +
                 ", deckplayer=" + Arrays.toString(deckplayer) +
                 ", sumaPuntos=" + sumaPuntos +
+                ", dineroHucha=" + dineroHucha +
+                ", dineroApostado=" + dineroApostado +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return sumaPuntos == player.sumaPuntos && Double.compare(dineroHucha, player.dineroHucha) == 0 && Double.compare(dineroApostado, player.dineroApostado) == 0 && Objects.equals(namePlayer, player.namePlayer) && Arrays.equals(deckplayer, player.deckplayer);
+    }
+
+
+
 }

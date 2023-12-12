@@ -9,6 +9,9 @@ public class Deck {
         return cards;
     }
 
+    public Deck() {
+        this.cards = rellenamazo();
+    }
 
     public static void main(String[] args) {
     }
@@ -16,7 +19,7 @@ public class Deck {
     public Card[] rellenamazo() {
         int aux = 0;
         for (int i = 0; i < suits.length; i++) {
-            for (int j = 0; j <= 13; j++) {
+            for (int j = 1; j <= 13; j++) {
                 if (suits[i] == "corazones" || suits[i] == "rombos") {
                     Card cartas = new Card(suits[i], j);
                     cards[aux] = cartas;
