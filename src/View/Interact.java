@@ -61,7 +61,6 @@ public class Interact {
          public static String leerpalabra(){
         Scanner teclado=new Scanner(System.in);
         String leePalabra = teclado.nextLine();
-             System.out.println(leePalabra);
         return leePalabra;
     }
 
@@ -72,13 +71,12 @@ public class Interact {
             numeroJugadores=leernumero();
             return numeroJugadores;
         }
-        public static String pedirNombreJugador(Player player){
+        public static void pedirNombreJugador(Player player){
 
             String nombreJugador="";
             System.out.println("Inserte el nombre del jugador por favor: ");
             nombreJugador=leerpalabra();
             player.setNamePlayer(nombreJugador);
-            return nombreJugador;
         }
     public static void da2Cartas(Player player,Deck deck) {
 
@@ -87,7 +85,6 @@ public class Interact {
         for (int i = 0; i < cartasiniciojugador.length; i++) {
             do {
                 int cartarandom = (int) (Math.random() * 52);
-                System.out.println(deck.getcards());
                 // Verificar si la carta obtenida aleatoriamente es null
                 if (deck.getcards()[cartarandom] != null) {
                     cartasiniciojugador[i] = deck.getcards()[cartarandom];
@@ -101,12 +98,32 @@ public class Interact {
     public static void Imprimir2CartaPlayer(Player player, Bet bet) {
         String name = player.getNamePlayer();
         Card[] deckplayer = player.getDeckplayer();
-        System.out.println("Perfecto " + name + " tus 2 primeras cartas son:                                                                                    "+" Apuesta global: "+ bet.getDineroGlobalApostado());
-        System.out.println("                                                                                                                                    "+" Tu puntuación: "+ player.getSumaPuntos());
+        System.out.println("Perfecto " + name + " tus 2 primeras cartas son: ");
+
         for (int i = 0; i < deckplayer.length; i++) {
             Card card=deckplayer[i];
             System.out.println(deckplayer[i].toString());
         }
+
+        System.out.println("############################################################################################################################");
+        System.out.println("#                                                                                                                          #");
+        System.out.println("#                          Tu puntuación es: "+player.getSumaPuntos()+"                        Apuesta global: "+bet.getDineroGlobalApostado()+"€"+"                                #");
+        System.out.println("#                                                                                                                          #");
+        System.out.println("############################################################################################################################");
+
+    }
+
+    public static void Imprimir2Carta(Player player) {
+        String name = player.getNamePlayer();
+        Card[] deckplayer = player.getDeckplayer();
+        System.out.println("Perfecto " + name + " tus 2 primeras cartas son: ");
+
+        for (int i = 0; i < deckplayer.length; i++) {
+            Card card=deckplayer[i];
+            System.out.println(deckplayer[i].toString());
+        }
+
+        System.out.println("Tu Puntuación:" + player.getSumaPuntos() );
     }
 
     public static void ImprimirPuntos(Player player){
@@ -127,12 +144,77 @@ public class Interact {
         bet.setDineroGlobalApostado(apuesta);
     }
 
-    public static void ImprimirApuestaGlobal(Player player){
+    public static double ImprimirApuestaGlobal(Player player, Bet bet){
             double apuestaGlobal=0;
-            apuestaGlobal+= player.getDineroApostado();
-        System.out.println("La apuesta global es " + apuestaGlobal);
+            bet.setDineroGlobalApostado(player.getDineroApostado());
+        System.out.println(bet.getDineroGlobalApostado());
+        return apuestaGlobal;
     }
 
+
+    public static void daNuevaCarta(Player player,Deck deck) {
+            Card[] cartasprimeras= player.getDeckplayer();
+
+        Card[] cartasiniciojugador = new Card[cartasprimeras.length+1];
+        for(int i=0;i<cartasprimeras.length;i++){
+            cartasiniciojugador[i]=cartasprimeras[i];
+        }
+        for (int i = cartasprimeras.length; i < cartasiniciojugador.length; i++) {
+            do {
+                int cartarandom = (int) (Math.random() * 52);
+                System.out.println(deck.getcards());
+                // Verificar si la carta obtenida aleatoriamente es null
+                if (deck.getcards()[cartarandom] != null) {
+                    cartasiniciojugador[i] = deck.getcards()[cartarandom];
+                    deck.getcards()[cartarandom] = null;
+                }
+            } while (cartasiniciojugador[i] == null);
+        }
+        player.setDeckplayer(cartasiniciojugador);
+    }
+
+    public static void ImprimirNuevasCartas(Player player, Bet bet) {
+        String name = player.getNamePlayer();
+        Card[] deckplayer = player.getDeckplayer();
+        System.out.println("Perfecto " + name + " tu mano ahora es:   ");
+
+        for (int i = 0; i < deckplayer.length; i++) {
+            Card card = deckplayer[i];
+            System.out.println(deckplayer[i].toString());
+
+
+        }
+        System.out.println("############################################################################################################################");
+        System.out.println("#                                                                                                                          #");
+        System.out.println("#                          Tu puntuación es: " + player.getSumaPuntos() + "                        Apuesta global: " + bet.getDineroGlobalApostado() + "€" + "                               #");
+        System.out.println("#                                                                                                                          #");
+        System.out.println("############################################################################################################################");
+    }
+
+        public static void ImprimirNuevasCartas(Player player) {
+        String name = player.getNamePlayer();
+        Card[] deckplayer = player.getDeckplayer();
+        System.out.println("Perfecto " + name + " tu mano ahora es:   ");
+
+        for (int i = 0; i < deckplayer.length; i++) {
+            Card card=deckplayer[i];
+            System.out.println(deckplayer[i].toString());
+            System.out.println(" Tu puntuación: "+ player.getSumaPuntos() );
+
+
+        }
+    }
+
+
+
+    public static double Elegircartas(){
+            double eleccion=0;
+        System.out.println("¿Qué desea hacer?: ");
+        System.out.println("1. Dame una carta");
+        System.out.println("2. Pasar");
+        eleccion=leernumero();
+        return eleccion;
+    }
 
 
 }

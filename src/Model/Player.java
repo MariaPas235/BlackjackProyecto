@@ -20,6 +20,14 @@ public class Player {
         this.dineroHucha = dineroHucha;
         this.dineroApostado=dineroApostado;
     }
+
+    public Player(String namePlayer) {
+        this.namePlayer = namePlayer;
+        this.deckplayer = new Card[0];
+        this.sumaPuntos = 0;
+        this.dineroHucha = 0;
+        this.dineroApostado=0;
+    }
     public Player(){
         this("",null,0,50,0);
     }

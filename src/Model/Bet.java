@@ -18,7 +18,7 @@ public class Bet {
     }
 
     public void setDineroGlobalApostado(double dineroGlobalApostado) {
-        this.dineroGlobalApostado = dineroGlobalApostado;
+        this.dineroGlobalApostado += dineroGlobalApostado;
     }
 
     @Override
