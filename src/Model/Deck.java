@@ -2,7 +2,7 @@ package Model;
 
 public class Deck {
     private Card[] cards = new Card[52];
-    private String[] suits = {"corazones", "rombos", "treboles", "picas"};
+    private String[] suits = {"♥", "♦", "♣", "♠"};
 
     public Card[] getcards(){
 
@@ -20,12 +20,12 @@ public class Deck {
         int aux = 0;
         for (int i = 0; i < suits.length; i++) {
             for (int j = 1; j <= 13; j++) {
-                if (suits[i] == "corazones" || suits[i] == "rombos") {
+                if (suits[i] == "♥" || suits[i] == "♦") {
                     Card cartas = new Card(suits[i], j);
                     cards[aux] = cartas;
                     aux++;
 
-                } else if (suits[i] == "treboles" || suits[i] == "picas") {
+                } else if (suits[i] == "♣" || suits[i] == "♠") {
                     Card cartas = new Card(suits[i], j);
                     cards[aux] = cartas;
                     aux++;

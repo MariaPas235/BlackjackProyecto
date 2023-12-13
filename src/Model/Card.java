@@ -34,10 +34,13 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "suit='" + suit + '\'' +
-                ", numberCard=" + numberCard +
-                '}';
+        return "╔══════════╗\n" +
+                "║" + numberCard + "         ║\n" +
+                "║          ║\n" +
+                "║    " + suit + "     ║\n" +
+                "║          ║\n" +
+                "║         " + numberCard + "║\n" +
+                "╚══════════╝";
     }
 
     @Override

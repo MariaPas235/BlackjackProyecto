@@ -17,6 +17,9 @@ import Model.Player;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 
+import static Model.Game.leernumero;
+import static Model.Game.leerpalabra;
+
 public class Interact {
 
     static Player player1 = new Player();
@@ -53,16 +56,6 @@ public class Interact {
             System.out.println(" ");
         }
 
-        public static double leernumero(){
-            Scanner teclado=new Scanner(System.in);
-            double leeNumero= teclado.nextInt();
-            return leeNumero;
-        }
-         public static String leerpalabra(){
-        Scanner teclado=new Scanner(System.in);
-        String leePalabra = teclado.nextLine();
-        return leePalabra;
-    }
 
 
         public static double pedirNumJugadores(){
@@ -73,27 +66,31 @@ public class Interact {
         }
         public static void pedirNombreJugador(Player player){
 
-            String nombreJugador="";
+            boolean validar=false;
+            String nombreJugador = "";
+
+
             System.out.println("Inserte el nombre del jugador por favor: ");
-            nombreJugador=leerpalabra();
-            player.setNamePlayer(nombreJugador);
-        }
-    public static void da2Cartas(Player player,Deck deck) {
+            nombreJugador = leerpalabra();
 
-        Card[] cartasiniciojugador = new Card[2];
-
-        for (int i = 0; i < cartasiniciojugador.length; i++) {
             do {
-                int cartarandom = (int) (Math.random() * 52);
-                // Verificar si la carta obtenida aleatoriamente es null
-                if (deck.getcards()[cartarandom] != null) {
-                    cartasiniciojugador[i] = deck.getcards()[cartarandom];
-                    deck.getcards()[cartarandom] = null;
-                }
-            } while (cartasiniciojugador[i] == null);
+
+
+            if (nombreJugador.trim().length() > 0 && !nombreJugador.equalsIgnoreCase("banca")) {
+                // If conditions are met, set the player name
+                player.setNamePlayer(nombreJugador);
+                validar=true;
+            } else {
+                // Handle the case where conditions are not met
+                System.out.println("Nombre inválido. Por favor inserte otro nombre.");
+                nombreJugador=leerpalabra();
+                // Optionally, you might want to prompt the user for a new name or take some other action.
+            }
+            }while (validar==false);
+
+
         }
-        player.setDeckplayer(cartasiniciojugador);
-    }
+
 
     public static void Imprimir2CartaPlayer(Player player, Bet bet) {
         String name = player.getNamePlayer();
@@ -113,7 +110,7 @@ public class Interact {
 
     }
 
-    public static void Imprimir2Carta(Player player) {
+    public static void Imprimir2Carta(Player player,Bet bet) {
         String name = player.getNamePlayer();
         Card[] deckplayer = player.getDeckplayer();
         System.out.println("Perfecto " + name + " tus 2 primeras cartas son: ");
@@ -122,14 +119,15 @@ public class Interact {
             Card card=deckplayer[i];
             System.out.println(deckplayer[i].toString());
         }
+        System.out.println("############################################################################################################################");
+        System.out.println("#                                                                                                                          #");
+        System.out.println("#                          Tu puntuación es: "+player.getSumaPuntos()+"                        Apuesta global: "+bet.getDineroGlobalApostado()+"€"+"                                #");
+        System.out.println("#                                                                                                                          #");
+        System.out.println("############################################################################################################################");
 
-        System.out.println("Tu Puntuación:" + player.getSumaPuntos() );
     }
 
-    public static void ImprimirPuntos(Player player){
-        System.out.println("Tu puntuación total es de: " + player.getSumaPuntos());
 
-    }
 
     public static void ImprimirHucha(Player player){
         System.out.println("Ahora mismo en su hucha hay " + player.getDineroHucha()+ " €");
@@ -151,27 +149,6 @@ public class Interact {
         return apuestaGlobal;
     }
 
-
-    public static void daNuevaCarta(Player player,Deck deck) {
-            Card[] cartasprimeras= player.getDeckplayer();
-
-        Card[] cartasiniciojugador = new Card[cartasprimeras.length+1];
-        for(int i=0;i<cartasprimeras.length;i++){
-            cartasiniciojugador[i]=cartasprimeras[i];
-        }
-        for (int i = cartasprimeras.length; i < cartasiniciojugador.length; i++) {
-            do {
-                int cartarandom = (int) (Math.random() * 52);
-                System.out.println(deck.getcards());
-                // Verificar si la carta obtenida aleatoriamente es null
-                if (deck.getcards()[cartarandom] != null) {
-                    cartasiniciojugador[i] = deck.getcards()[cartarandom];
-                    deck.getcards()[cartarandom] = null;
-                }
-            } while (cartasiniciojugador[i] == null);
-        }
-        player.setDeckplayer(cartasiniciojugador);
-    }
 
     public static void ImprimirNuevasCartas(Player player, Bet bet) {
         String name = player.getNamePlayer();
@@ -199,10 +176,11 @@ public class Interact {
         for (int i = 0; i < deckplayer.length; i++) {
             Card card=deckplayer[i];
             System.out.println(deckplayer[i].toString());
-            System.out.println(" Tu puntuación: "+ player.getSumaPuntos() );
+            ;
 
 
         }
+        System.out.println(" Tu puntuación es: "+ player.getSumaPuntos() );
     }
 
 
@@ -216,6 +194,18 @@ public class Interact {
         return eleccion;
     }
 
+    public static void ImprimirFinTurno(){
+        System.out.println("                                       ==============================================================");
+        System.out.println("                                       =                    Su turno ha finalizado                  =");
+        System.out.println("                                       ==============================================================");
+        System.out.println(" ");
+
+        System.out.println("                                       ==============================================================");
+        System.out.println("                                       =                Comienza el siguiente turno                 =");
+        System.out.println("                                       ==============================================================");
+        System.out.println(" ");
+
+    }
 
 }
 
