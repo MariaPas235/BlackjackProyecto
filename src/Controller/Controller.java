@@ -16,8 +16,7 @@ public class Controller {
         juego();
     }
 
-
-        public static void juego() {
+    public static void juego() {
             Deck deck = new Deck();
             Bet bet = new Bet();
             Player player1 = new Player();
@@ -47,7 +46,7 @@ public class Controller {
                                 daNuevaCarta(player1, deck);
                                 ajustarValores(player1);
                                 ImprimirNuevasCartas(player1, bet);
-                                if (SumarPuntos(player1) >= 21) {
+                                if (ajustarValores(player1) >= 21) {
                                     eleccion1 = 2;
                                 }
                                 break;
@@ -86,7 +85,7 @@ public class Controller {
                                 daNuevaCarta(player1, deck);
                                 ajustarValores(player1);
                                 ImprimirNuevasCartas(player1, bet);
-                                if (SumarPuntos(player1) >= 21) {
+                                if (ajustarValores(player1) >= 21) {
                                     eleccion2 = 2;
                                 }
                                 break;
@@ -114,7 +113,7 @@ public class Controller {
                                 daNuevaCarta(player2, deck);
                                 ajustarValores(player2);
                                 ImprimirNuevasCartas(player2, bet);
-                                if (SumarPuntos(player2) >= 21) {
+                                if (ajustarValores(player2) >= 21) {
                                     eleccion2 = 2;
                                 }
                                 break;
@@ -159,7 +158,7 @@ public class Controller {
                                 daNuevaCarta(player1, deck);
                                 ajustarValores(player1);
                                 ImprimirNuevasCartas(player1, bet);
-                                if (SumarPuntos(player1) >= 21) {
+                                if (ajustarValores(player1) >= 21) {
                                     eleccion3 = 2;
                                 }
                                 break;
@@ -187,7 +186,7 @@ public class Controller {
                                 daNuevaCarta(player2, deck);
                                 ajustarValores(player2);
                                 ImprimirNuevasCartas(player2, bet);
-                                if (SumarPuntos(player2) >= 21) {
+                                if (ajustarValores(player2) >= 21) {
                                     eleccion3 = 2;
                                 }
                                 break;
@@ -217,7 +216,7 @@ public class Controller {
                                 daNuevaCarta(player3, deck);
                                 ajustarValores(player3);
                                 ImprimirNuevasCartas(player3, bet);
-                                if (SumarPuntos(player3) >= 21) {
+                                if (ajustarValores(player3) >= 21) {
                                     eleccion3 = 2;
                                 }
                                 break;
@@ -259,7 +258,7 @@ public class Controller {
                                 daNuevaCarta(player1, deck);
                                 ajustarValores(player1);
                                 ImprimirNuevasCartas(player1, bet);
-                                if (SumarPuntos(player1) >= 21) {
+                                if (ajustarValores(player1) >= 21) {
                                     eleccion4 = 2;
                                 }
                                 break;
@@ -289,7 +288,7 @@ public class Controller {
                                 daNuevaCarta(player2, deck);
                                 ajustarValores(player2);
                                 ImprimirNuevasCartas(player2, bet);
-                                if (SumarPuntos(player2) >= 21) {
+                                if (ajustarValores(player2) >= 21) {
                                     eleccion4 = 2;
                                 }
                                 break;
@@ -319,7 +318,7 @@ public class Controller {
                                 daNuevaCarta(player3, deck);
                                 ajustarValores(player3);
                                 ImprimirNuevasCartas(player3, bet);
-                                if (SumarPuntos(player3) >= 21) {
+                                if (ajustarValores(player3) >= 21) {
                                     eleccion4 = 2;
                                 }
                                 break;
@@ -348,7 +347,7 @@ public class Controller {
                                 daNuevaCarta(player4, deck);
                                 ajustarValores(player4);
                                 ImprimirNuevasCartas(player4, bet);
-                                if (SumarPuntos(player4) >= 21) {
+                                if (ajustarValores(player4) >= 21) {
                                     eleccion4 = 2;
                                 }
                                 break;

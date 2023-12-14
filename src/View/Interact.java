@@ -57,14 +57,22 @@ public class Interact {
         }
 
 
-
-        public static double pedirNumJugadores(){
+    /**
+     * Pide el número de jugadores al usuario
+     * @return número de jugadores que van a jugar
+     */
+    public static double pedirNumJugadores(){
             double numeroJugadores;
             System.out.println("¿Cuántos jugadores sois?: 1,2,3 ó 4");
             numeroJugadores=leernumero();
             return numeroJugadores;
         }
-        public static void pedirNombreJugador(Player player){
+
+    /**
+     * Pide el nombre de los jugadores que van a jugar
+     * @param player le entra el modelo Player, para poder setear el nombre y que se guarde ahí
+     */
+    public static void pedirNombreJugador(Player player){
 
             boolean validar=false;
             String nombreJugador = "";
@@ -91,7 +99,11 @@ public class Interact {
 
         }
 
-
+    /**
+     * Imprime las dos cartas iniciales que se le dan al jugador además de la puntuación de su mano y de la apuesta que hay en partida
+     * @param player le entra el modelo Player para conseguir su nombre, su mazo de cartas y las puntuaciones
+     * @param bet le entra el modelo bet para obtener la apuesta global
+     */
     public static void Imprimir2CartaPlayer(Player player, Bet bet) {
         String name = player.getNamePlayer();
         Card[] deckplayer = player.getDeckplayer();
@@ -110,29 +122,16 @@ public class Interact {
 
     }
 
-    public static void Imprimir2Carta(Player player,Bet bet) {
-        String name = player.getNamePlayer();
-        Card[] deckplayer = player.getDeckplayer();
-        System.out.println("Perfecto " + name + " tus 2 primeras cartas son: ");
-
-        for (int i = 0; i < deckplayer.length; i++) {
-            Card card=deckplayer[i];
-            System.out.println(deckplayer[i].toString());
-        }
-        System.out.println("############################################################################################################################");
-        System.out.println("#                                                                                                                          #");
-        System.out.println("#                          Tu puntuación es: "+player.getSumaPuntos()+"                        Apuesta global: "+bet.getDineroGlobalApostado()+"€"+"                                #");
-        System.out.println("#                                                                                                                          #");
-        System.out.println("############################################################################################################################");
-
-    }
-
-
 
     public static void ImprimirHucha(Player player){
         System.out.println("Ahora mismo en su hucha hay " + player.getDineroHucha()+ " €");
     }
 
+    /**
+     * Pide la apuesta que quiere jugar al jugador
+     * @param player le entra el modelo jugador para setear el dinero que le queda en la hucha despues de apostar
+     * @param bet le entra el modelo bet para guardar la apuesta en una variable global
+     */
     public static void PedirApuesta(Player player, Bet bet){
             double apuesta=0;
         System.out.println("¿Cuánto dinero desea apostar? ");
@@ -142,14 +141,12 @@ public class Interact {
         bet.setDineroGlobalApostado(apuesta);
     }
 
-    public static double ImprimirApuestaGlobal(Player player, Bet bet){
-            double apuestaGlobal=0;
-            bet.setDineroGlobalApostado(player.getDineroApostado());
-        System.out.println(bet.getDineroGlobalApostado());
-        return apuestaGlobal;
-    }
 
-
+    /**
+     * Imprime el mazo jugador después de que le dé al jugador una carta nueva
+     * @param player le entra el modelo Player para obtener su nombre, su mano jugadora y los puntos totales
+     * @param bet le entra el modelo bet para obtener la apuesta global
+     */
     public static void ImprimirNuevasCartas(Player player, Bet bet) {
         String name = player.getNamePlayer();
         Card[] deckplayer = player.getDeckplayer();
@@ -168,7 +165,11 @@ public class Interact {
         System.out.println("############################################################################################################################");
     }
 
-        public static void ImprimirNuevasCartas(Player player) {
+    /**
+     * Imprime las nuevas cartas que se le van dando a la banca
+     * @param player le entra el modelo Player del que obtendremos el nombre, los puntos y la mano jugadora
+     */
+    public static void ImprimirNuevasCartas(Player player) {
         String name = player.getNamePlayer();
         Card[] deckplayer = player.getDeckplayer();
         System.out.println("Perfecto " + name + " tu mano ahora es:   ");
@@ -184,7 +185,10 @@ public class Interact {
     }
 
 
-
+    /**
+     * Menú donde podremos elegir que nos den una carta o pasar turno
+     * @return la elección elegida
+     */
     public static double Elegircartas(){
             double eleccion=0;
         System.out.println("¿Qué desea hacer?: ");
